@@ -3,21 +3,20 @@ import { installSnap } from '@metamask/snaps-jest';
 import { panel, text } from '@metamask/snaps-sdk';
 
 describe('onRpcRequest', () => {
-  describe('hello', () => {
+  describe('get-account-info', () => {
     it('shows a confirmation dialog', async () => {
       const { request } = await installSnap();
 
       const origin = 'Jest';
       const response = request({
-        method: 'hello',
-        origin,
+        method: 'get-account-info'
       });
 
       const ui = await response.getInterface();
       expect(ui.type).toBe('confirmation');
       expect(ui).toRender(
         panel([
-          text(`Hello, **${origin}**!`),
+          text(`get-account-info', **${origin}**!`),
           text('This custom confirmation is just for display purposes.'),
           text(
             'But you can edit the snap source code to make it do something, if you want to!',

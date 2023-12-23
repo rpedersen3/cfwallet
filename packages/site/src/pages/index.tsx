@@ -5,7 +5,7 @@ import {
   ConnectButton,
   InstallFlaskButton,
   ReconnectButton,
-  SendHelloButton,
+  GetAccountInfoButton,
   Card,
 } from '../components';
 import { defaultSnapOrigin } from '../config';
@@ -14,7 +14,7 @@ import {
   connectSnap,
   getSnap,
   isLocalSnap,
-  sendHello,
+  getAccountInfo,
   shouldDisplayReconnectButton,
 } from '../utils';
 
@@ -124,9 +124,9 @@ const Index = () => {
     }
   };
 
-  const handleSendHelloClick = async () => {
+  const handleGetAccountInfoClick = async () => {
     try {
-      await sendHello();
+      await getAccountInfo();
     } catch (error) {
       console.error(error);
       dispatch({ type: MetamaskActions.SetError, payload: error });
@@ -192,12 +192,11 @@ const Index = () => {
         )}
         <Card
           content={{
-            title: 'Send Hello message',
-            description:
-              'Display a custom message within a confirmation screen in MetaMask.',
+            title: 'Get Account Info',
+            description: 'Get Account Information',
             button: (
-              <SendHelloButton
-                onClick={handleSendHelloClick}
+              <GetAccountInfoButton
+                onClick={handleGetAccountInfoClick}
                 disabled={!state.installedSnap}
               />
             ),
